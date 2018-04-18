@@ -31,6 +31,7 @@
 	</thead>
 	<tbody>
 	  <tr>
+	  <!-- TODO: should be a for-loop -->
 	    <th>Now</th><td><?php echo "$observed->{'weather'}"; ?></td>
 	    <th>Temperature</th><td><?php echo "$observed->{'temperature_string'}"; ?></td>
 	    <th>Relative Humidity</th><td><?php echo "$observed->{'relative_humidity'}"; ?></td>
@@ -53,6 +54,7 @@
 		temperature		DECIMAL(4,1)
 		humidity		DECIMAL(2)
  */
+//	TODO: convert datestring to proper timestamp
 	$station = $observed->{'station_id'};
 	$ts = $observed->{'observation_time_rfc822'};
 	$temp_f = $observed->{'temp_f'};
