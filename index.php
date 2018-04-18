@@ -43,6 +43,31 @@
   </table>
   <!-- SQL statement -->
   <div>
+<?php
+/*
+  Assumung table "weather_data"
+  with columns:
+		id		( auto-incrementing primary key )
+		station			VARCHAR(20)
+		observed		VARCHAR(40)
+		temperature		DECIMAL(4,1)
+		humidity		DECIMAL(2)
+ */
+	$station = $observed->{'station_id'};
+	$ts = $observed->{'observation_time_rfc822'};
+	$temp_f = $observed->{'temp_f'};
+	$humid = rtrim( $observed->{'relative_humidity'}, '%');
+ 
+echo "INSERT INTO weather_data("
+	. "station, observed, temperature, humidity)"
+	. "VALUES ("
+		. $station . ","
+		. $ts . "."
+		. $temp_f . "."
+		. $humid
+	. ")";
+}
+?>
   </div>
   </body>
 </html>
