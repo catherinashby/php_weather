@@ -14,23 +14,35 @@
   </head>
   <body>
  <?php
+   // fetch the data
   $json_string = file_get_contents("http://api.wunderground.com/api/fd33019fe645d261/conditions/q/PA/Philadelphia.json");
   $parsed_json = json_decode($json_string);
-  $location = $parsed_json->{'current_observation'}->{'display_location'};
+  $observed = $parsed_json->{'current_observation'};
+  $location = $parsed_json->{'current_observation'}->{'observation_location'};
  ?>
   <table>
   <caption>
 	<?php  echo "Current conditions for ${location}->{'full'}"; ?>
+	<br />
+	<?php  echo "${observed}->{'observation_time'}"; ?>
   </caption>
     <thead>
 	  <tr><th /></tr>
 	</thead>
 	<tbody>
 	  <tr>
-	    <th>Label</th>
-		<td>Data</td>
+	    <th>Now</th><td><?php echo "$observed->{'weather'}"; ?></td>
+	    <th>Temperature</th><td><?php echo "$observed->{'temperature_string'}"; ?></td>
+	    <th>Relative Humidity</th><td><?php echo "$observed->{'relative_humidity'}"; ?></td>
+	    <th>Wind</th><td><?php echo "$observed->{'wind_string'}"; ?></td>
+	    <th>Dewpoint</th><td><?php echo "$observed->{'dewpoint_string'}"; ?></td>
+	    <th>Wind Chill</th><td><?php echo "$observed->{'windchill_string'}"; ?></td>
+	    <th>Feels Like</th><td><?php echo "$observed->{'feelslike_string'}"; ?></td>
 	  </tr>
 	</tbody>
   </table>
+  <!-- SQL statement -->
+  <div>
+  </div>
   </body>
 </html>
